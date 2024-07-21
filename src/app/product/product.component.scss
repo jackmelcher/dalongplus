@@ -1,0 +1,17 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
+}
+.card {
+    margin: 16px
+}
+.card>.image{
+    text-align: center;
+}
+.card>.text{
+    text-align: center;
+}
+.content {
+    margin: 0 auto 0 auto;
+    max-width: 1024px;
+}

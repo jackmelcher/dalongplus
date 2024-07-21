@@ -1,0 +1,27 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+.home{
+    font-size: 32px;
+    font-weight: bold;
+}
+.gradesMain {
+    margin: 0 16px 0 0;
+}
+.gradesOther {
+    margin: 0 0 0 16px;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.content {
+    margin: 0 auto 0 auto;
+    max-width: 1024px;
+}
+@media screen and (max-width: 650px) {
+    .content {
+    }
+}
