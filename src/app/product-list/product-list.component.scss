@@ -1,4 +1,8 @@
-.content {
-    margin: 0 auto 0 auto;
-    max-width: 1024px;
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(160px, 1fr));
+    margin-bottom: 16px;
+}
+.logo {
+    width: 150px;
 }

@@ -1,7 +1,11 @@
-<h1>Welcome to DalongPlus.net</h1>
-<div>
-  <a [routerLink]="['/models']">View Model Kits</a>
-</div>
-<div>
-  <a [routerLink]="['/stores']">Browse Hobby Stores</a>
+<div class="content">
+  <div class="header2">Gundam Model Kit Reviews</div>
+  <div class="header3">Main Grades:</div>
+  <app-product-list [grades]="['pg','mg','eg','fm','rg']"/>
+  <div class="header3">High Grades:</div>
+  <app-product-list [grades]="['hg']"/>
+  <div class="header3">No Grades:</div>
+  <app-product-list [grades]="['ng']"/>
+  <div class="header3">Other Grades:</div>
+  <app-product-list [grades]="['re','fg','ag','hirm','hy2m','gc','uchg','ex','sg','']"/>
 </div>

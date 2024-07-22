@@ -1,4 +1,4 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Entry } from 'contentful';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -17,8 +17,9 @@ import { url } from 'node:inspector';
 export class ProductListComponent implements OnInit {
   // define private class properties
   products: Entry<any>[] = [];
+  products2: Entry<any>[] = [];
   currentProductAcronym: any;
-  grade: string | null = '';
+  @Input() grades: string[] = [];
   urlMap: Map<string|null, string> = new Map<string,string> ([
     ['hg','High Grade'],
     ['mg','Master Grade'],
@@ -39,50 +40,26 @@ export class ProductListComponent implements OnInit {
     ['gc','Gundam Collection'],
     ['hy2m','Hyper Hybrid Model'],
   ]);
-  defaultProductLineMap: Map<string|null, string> = new Map<string,string> ([
-    ['hg','HGUC'],
-    ['mg','MG'],
-    ['pg','PG'],
-    ['eg','EG'],
-    ['ng','NG-MSG'],
-    ['fg','FG'],
-    ['ag','AG'],
-    ['re','RE/100'],
-    ['fm','SEED-FM'],
-    ['msm','MSM'],
-    ['rg','RG'],
-    ['sd','MGSD'],
-    ['sg','SG'],
-    ['hirm','HiRM'],
-    ['ex','EX'],
-    ['uchg','UCHG'],
-    ['gc','GC'],
-    ['hy2m','H2YM-24'],
-  ]);
 
   constructor(private contentfulService: ContentfulService, private route: ActivatedRoute) { }
 
   // fetch data on init
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.grade = params.get('grade');
-      this.currentProductAcronym = this.defaultProductLineMap.get(this.grade);
-      this.contentfulService.getProducts({'fields.grade': this.getGrade(this.grade),
-                                        order: 'fields.acronym'})
-      .then(products => this.products = products)
-    });
+    this.contentfulService.getProducts({'fields.grade[in]': this.getAllGrades(this.grades),
+      order: 'fields.acronym'})
+    .then(products => this.products = products)
   }
 
-  protected getGrade(grade:string | null ):string{
-    let gradeName = this.urlMap.get(grade);
-    if(gradeName != undefined){
-      return gradeName;
+  protected getAllGrades(grades:string[]):string|undefined{
+    let allGrades:string|undefined = '';
+    for(let grade of grades){
+      allGrades += this.urlMap.get(grade) + ',';
     }
-    return '';
+    return allGrades;
   }
 
-  protected selectProductLine(productAcronym: any) {
-    this.currentProductAcronym = productAcronym;
+  protected getAcronym(index:number):any {
+    return this.products[index]?.fields?.['acronym']?.toString().toLowerCase()
   }
 
   protected setDefaultProductline(){

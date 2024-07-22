@@ -1,39 +1,13 @@
-<!-- ./app/product-list/product-list.component.html-->
-<!-- <ul class="u-listReset">
-    <ng-template ngFor let-product [ngForOf]="products">
-        <li>{{ product?.fields?.['acronym'] }}</li>
-        <ng-template ngFor let-number [ngForOf]="[].constructor(product?.fields?.['dalongnumber'])" let-i="index">
-            <span *ngIf="modelKitsHGUC && modelKitsHGUC.length > 0">
-                <a [routerLink]="['/review', modelKitsHGUC[i]?.fields?.['id']]">{{ this.modelKitsHGUC[i]?.fields?.['id'] }}</a>
-            </span>
-            <a *ngIf="product?.fields?.['dalonglink']" [href]="getDalongLink(product?.fields?.['dalonglink'], product?.fields?.['acronym'], i+1)">
-                <img [src]="getDalongPreviewImage(product?.fields?.['dalongPreviewImage'], product?.fields?.['acronym'], i+1)">
-            </a>
-        </ng-template>
-    </ng-template>
-</ul> -->
-<!-- <h2>{{this.getGrade(this.grade) + 's'}}</h2>
-<ul>
-    <ng-template ngFor let-product [ngForOf]="products">
-        <li>{{ product?.fields?.['name'] }}</li>
-        <ng-template ngFor let-number [ngForOf]="[].constructor(product?.fields?.['dalongnumber'])" let-i="index">
-            <a [routerLink]="['/review', getReviewUrl(product?.fields?.['acronym'],i)]">{{ i+1 }}</a>
-            <a *ngIf="product?.fields?.['dalonglink']" [routerLink]="['/review', getReviewUrl(product?.fields?.['acronym'],i)]">
-                <img [src]="getDalongPreviewImage(product?.fields?.['dalongPreviewImage'], product?.fields?.['acronym'], i)">
-            </a>
-        </ng-template>
-    </ng-template>
-</ul> -->
-
-<div class="content">
-    <h2>{{this.getGrade(this.grade) + 's'}}</h2>
-    @if(products.length > 1){
+<div class="wrapper">
+    @if(products.length > 0){
         @for (product of products; track product?.fields?.['acronym']) {
-            <button (click)="selectProductLine(product?.fields?.['acronym'])">{{product?.fields?.['acronym']}}</button> |
+            <!-- <button (click)="selectProductLine(product?.fields?.['acronym'])">{{product?.fields?.['acronym']}}</button> -->
+            <div class="textCenter">
+                <a [routerLink]="['reviews/'+product?.fields?.['acronym']]">
+                    <img class="logo" [src]="product?.fields?.['logo']"/>
+                    <div>{{product?.fields?.['scale'] + ' ' + product?.fields?.['name']}}</div>
+                </a>
+            </div>
         }
     }
-    <app-product [productAcronym]="currentProductAcronym"></app-product>
-    <!-- <ng-template ngFor let-product [ngForOf]="products">
-        <app-product [productAcronym]="product?.fields?.['acronym']"></app-product>
-    </ng-template> -->
 </div>

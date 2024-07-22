@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 // import Contentful createClient and type for `Entry`
 import { createClient, Entry } from 'contentful';
-import { environment } from './../environments/environment';
+import { environment } from '../environments/environment';
 
 // configure the service with tokens and content type ids
 // SET YOU OWN CONFIG here
@@ -20,8 +20,8 @@ const CONFIG = {
 })
 export class ContentfulService {
   private cdaClient = createClient({
-    space: CONFIG.space!,
-    accessToken: CONFIG.accessToken!,
+    space: CONFIG.space,
+    accessToken: CONFIG.accessToken,
     host: CONFIG.preview ? "preview.contentful.com" : "cdn.contentful.com"
   });
 

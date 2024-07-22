@@ -2,26 +2,24 @@
     position: sticky;
     top: 0;
     background-color: white;
+    padding-bottom: 8px;
 }
 .home{
-    font-size: 32px;
+    font-size: 24px;
     font-weight: bold;
+    vertical-align: bottom;
 }
-.gradesMain {
+.navMiddle {
     margin: 0 16px 0 0;
 }
-.gradesOther {
+.navEnd {
     margin: 0 0 0 16px;
 }
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
-.content {
-    margin: 0 auto 0 auto;
-    max-width: 1024px;
-}
-@media screen and (max-width: 650px) {
-    .content {
-    }
+.logo {
+    height: 64px;
+    vertical-align: middle;
 }

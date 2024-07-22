@@ -57,7 +57,7 @@
     </div>
 </div> -->
 
-<div>
+<div class="content">
     <h1>{{getHeader()}}</h1>
     <h2>Info</h2>
     <p>{{ modelKit?.fields?.productLine?.fields?.scale }} {{ modelKit?.fields?.productLine?.fields?.grade }}</p>
@@ -78,16 +78,3 @@
         <a [href]="getDalongLink()">Original Review</a>
     </div>
 </div>
-
-
-
-
-<!-- Test -->
-<!-- <div *ngIf="reviewImage > 0" >
-    <h1>Test</h1>
-<ng-template ngFor let-number [ngForOf]="[].constructor(5)" let-i="index">
-    <div *ngIf="checkLink(getReviewImages(i)) | async" >
-        <img [src]="getReviewImages(i)">
-    </div>
-</ng-template>
-</div> -->

@@ -1,43 +1,19 @@
 <div class="content">
     @if(product){
-    <h3>{{ getProductLineName() }}</h3>
-    <!-- <ng-template ngFor let-number [ngForOf]="[].constructor(product?.fields?.['dalongnumber'])" let-i="index"> -->
-    <div class="wrapper">
-        <ng-template ngFor let-number [ngForOf]="[].constructor(product?.fields?.modelKits.kits.length)" let-i="index">
-        <div class="card">
-            <div class="image">
-                <!-- <a *ngIf="product?.fields?.['dalonglink']" [routerLink]="['/review', getReviewUrl(product?.fields?.['acronym'],i)]"> -->
-                <a [routerLink]="['/review', getReviewUrl(product?.fields?.['acronym'],i)]">
-                    <!-- <img [src]="getDalongPreviewImage(product?.fields?.['dalongPreviewImage'], product?.fields?.['acronym'], i)"> -->
-                    <img [src]="getPreviewImage(i)">
-                </a>
-            </div>
-            <!-- <span *ngIf="modelKits && modelKits.length > 0">
-                <a [routerLink]="['/review', modelKits[i]?.fields?.['id']]">{{ this.modelKits[i]?.fields?.['id'] }}</a>
-            </span> | -->
-            <div class="text">
-                <a [routerLink]="['/review', getReviewUrl(product?.fields?.['acronym'],i)]">{{(i+1)}}. {{getModelKitName(i)}}</a>
-            </div>
-            <!-- <a [routerLink]="['/review', getReviewUrl(product?.fields?.['acronym'],i)]">Review</a> |
-    
-                <span *ngIf="product?.fields?.['dalonglink'] && product?.fields?.['dalonglink'].includes('_')">
-                    <a [href]="getDalongReviewLink(product?.fields?.['dalonglink'], product?.fields?.['acronym'], i)">Review</a> |
-                    <a [href]="getDalongInfoLink(product?.fields?.['dalonglink'], product?.fields?.['acronym'], i)">Info</a> |
-                </span>
-                <span *ngIf="product?.fields?.['dalonglink'] && !product?.fields?.['dalonglink'].includes('_')">
-                    <a [href]="getDalongReviewLink(product?.fields?.['dalonglink'], product?.fields?.['acronym'], i)">Info & Review</a> |
-                </span>
-                @if( product?.fields?.['dalonglink'] && product?.fields?.['dalonglink'].includes('_') ){
-                    <a [href]="getDalongInfoLink(product?.fields?.['dalonglink'], product?.fields?.['acronym'], i)">Info</a> |
-                    @if( product?.fields?.['grade'] && product?.fields?.['grade'] == 'Perfect Grade' || product?.fields?.['grade'] && product?.fields?.['grade'] == 'Hyper Hybrid Model'){
-                        <a [href]="getDalongPartLink(product?.fields?.['dalonglink'], product?.fields?.['acronym'], i)">Parts</a> |
-                    }
-                    <a [href]="getDalongReviewLink(product?.fields?.['dalonglink'], product?.fields?.['acronym'], i)">Review</a> |
-                } @if( product?.fields?.['dalonglink'] && !product?.fields?.['dalonglink'].includes('_') ){
-                    <a [href]="getDalongReviewLink(product?.fields?.['dalonglink'], product?.fields?.['acronym'], i)">Info & Review</a> |
-                } -->
-            </div>
-        </ng-template>
-    </div>
+        <h3>{{ getProductLineName() }}</h3>
+        <div class="wrapper">
+            <ng-template ngFor let-number [ngForOf]="[].constructor(product?.fields?.modelKits.kits.length)" let-i="index">
+            <div class="card">
+                <div class="image">
+                    <a [routerLink]="['/reviews', product?.fields?.['acronym'], getReviewUrl(product?.fields?.['acronym'],i)]">
+                        <img [src]="getPreviewImage(i)">
+                    </a>
+                </div>
+                    <div class="text">
+                        <a [routerLink]="['/reviews', product?.fields?.['acronym'],getReviewUrl(product?.fields?.['acronym'],i)]">{{(i+1)}}. {{getModelKitName(i)}}</a>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
     }
 </div>
