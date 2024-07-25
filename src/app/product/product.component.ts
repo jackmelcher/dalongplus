@@ -34,7 +34,7 @@ export class ProductComponent implements OnChanges{
   }
 
   protected getReviewUrl (acronym: any, index: number): string {
-    return acronym.toLowerCase() +'/'+ (index+1);
+    return acronym.toLowerCase() + (index+1);
     // return acronym.toLowerCase() + (index+1);
   }
 

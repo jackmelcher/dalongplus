@@ -1,11 +1,13 @@
 <div class="content">
   <div class="header2">Gundam Model Kit Reviews</div>
-  <div class="header3">Main Grades:</div>
-  <app-product-list [grades]="['pg','mg','eg','fm','rg']"/>
-  <div class="header3">High Grades:</div>
-  <app-product-list [grades]="['hg']"/>
-  <div class="header3">No Grades:</div>
-  <app-product-list [grades]="['ng']"/>
-  <div class="header3">Other Grades:</div>
-  <app-product-list [grades]="['re','fg','ag','hirm','hy2m','gc','uchg','ex','sg','']"/>
+  <div class="header3">Current Product Lines</div>
+  <app-product-list [acronyms]="['PG','MG','MGEX','MGSD','EG','RG','FMSEED','HGAGP','HGTWFM','HGGBM','HGCDI','HGGTO','SEED-FM','TWFM-FM']"/>
+  <div class="header3">Modern High Grade Product Lines:</div>
+  <app-product-list [grades]="['hg']" [yearGte]="1999"/>
+  <div class="header3">Old High Grade Product Lines:</div>
+  <app-product-list [grades]="['hg']" [yearLte]="1998"/>
+  <div class="header3">All No Grades:</div>
+  <app-product-list [grades]="['ng']" [yearLte]="2010"/>
+  <div class="header3">Other Product Lines:</div>
+  <app-product-list [acronyms]="['MSM','IBO-FM-S1','IBO-FM-S2','FGMSG','MG00','HY2M-24','HY2M-60','HY2M-MG','GC','UCHG','EX','SG','HP','EG2011','HiRM']"/>
 </div>

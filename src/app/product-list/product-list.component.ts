@@ -18,8 +18,10 @@ export class ProductListComponent implements OnInit {
   // define private class properties
   products: Entry<any>[] = [];
   products2: Entry<any>[] = [];
-  currentProductAcronym: any;
+  @Input() acronyms: string[] = [];
   @Input() grades: string[] = [];
+  @Input() yearGte: number = 1980;
+  @Input() yearLte: number = new Date().getFullYear();
   urlMap: Map<string|null, string> = new Map<string,string> ([
     ['hg','High Grade'],
     ['mg','Master Grade'],
@@ -45,9 +47,18 @@ export class ProductListComponent implements OnInit {
 
   // fetch data on init
   ngOnInit() {
-    this.contentfulService.getProducts({'fields.grade[in]': this.getAllGrades(this.grades),
-      order: 'fields.acronym'})
-    .then(products => this.products = products)
+    if(this.acronyms.length > 0){
+      this.contentfulService.getProducts({'fields.acronym[in]': this.getAllAcronyms(this.acronyms),
+        order: 'fields.acronym'})
+      .then(products => this.products = products)
+    }
+    else{
+      this.contentfulService.getProducts({'fields.grade[in]': this.getAllGrades(this.grades),
+        'fields.yearStart[gte]': this.yearGte,
+        'fields.yearStart[lte]': this.yearLte,
+        order: 'fields.yearStart'})
+      .then(products => this.products = products)
+    }
   }
 
   protected getAllGrades(grades:string[]):string|undefined{
@@ -56,6 +67,13 @@ export class ProductListComponent implements OnInit {
       allGrades += this.urlMap.get(grade) + ',';
     }
     return allGrades;
+  }
+  protected getAllAcronyms(acronyms:string[]):string|undefined{
+    let allAcronyms:string|undefined = '';
+    for(let acronym of acronyms){
+      allAcronyms += acronym + ',';
+    }
+    return allAcronyms;
   }
 
   protected getAcronym(index:number):any {
