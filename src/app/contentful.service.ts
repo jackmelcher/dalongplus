@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 // import Contentful createClient and type for `Entry`
-import { createClient, Entry } from 'contentful';
+import * as contentful from 'contentful';
 import { environment } from '../environments/environment';
 
 // configure the service with tokens and content type ids
@@ -19,22 +19,22 @@ const CONFIG = {
   providedIn: 'root'
 })
 export class ContentfulService {
-  private cdaClient = createClient({
+  private cdaClient = contentful.createClient({
     space: CONFIG.space,
     accessToken: CONFIG.accessToken,
     host: CONFIG.preview ? "preview.contentful.com" : "cdn.contentful.com"
-  });
+  })
 
   constructor() { }
 
-  getProducts(query?: object): Promise<Entry<any>[]> {
+  getProducts(query?: object): Promise<contentful.Entry<any>[]> {
     return this.cdaClient.getEntries(Object.assign({
       content_type: CONFIG.contentTypeIds.product
     }, query))
     .then(res => res.items);
   }
 
-  getModelKits(query?: object): Promise<Entry<any>[]> {
+  getModelKits(query?: object): Promise<contentful.Entry<any>[]> {
     return this.cdaClient.getEntries(Object.assign({
       content_type: CONFIG.contentTypeIds.modelKit
     }, query))

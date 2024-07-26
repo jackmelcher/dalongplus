@@ -1,12 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { ContentfulService } from '../contentful.service';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-review',
   standalone: true,
-  imports: [CommonModule,HttpClientModule],
+  imports: [CommonModule],
   templateUrl: './review.component.html',
   styleUrl: './review.component.scss'
 })
@@ -24,12 +22,10 @@ export class ReviewComponent {
   protected partsImage:string[] = []
   private dalongUrl:string = 'http://dalong.net/reviews/';
 
-  constructor(private contentfulService: ContentfulService,private route: ActivatedRoute) { }
+  constructor(private contentfulService: ContentfulService) { }
   
   // fetch data on init
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
-
     this.contentfulService.getModelKits({'fields.id': this.id})
     .then(modelKits => {this.modelKit = modelKits[0]; this.initVariables()});
   }
