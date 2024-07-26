@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductComponent implements OnChanges{
   product: any;
-  dalongReviewUrl: string = 'http://dalong.net/reviews/';
+  dalongReviewUrl: string = 'dalong.net/reviews/';
   @Input() productAcronym: any;
   grade: string ='';
 
@@ -42,8 +42,9 @@ export class ProductComponent implements OnChanges{
     return this.product?.fields?.modelKits.kits[index].text
   }
   protected getPreviewImage (index: number): string {
+    let wsrv = '//wsrv.nl/?url='
     let imgSrc = this.product?.fields?.modelKits.kits[index].src
-    return this.dalongReviewUrl + imgSrc.slice(0,2)+'/'+ imgSrc
+    return wsrv+this.dalongReviewUrl + imgSrc.slice(0,2)+'/'+ imgSrc
   }
   protected getProductLineName() : string {
     return this.product?.fields?.['scale'] + ' ' + this.product?.fields?.['grade'] + ' ' + this.product?.fields?.['name'] + ' (' + this.product?.fields?.['acronym'] + ')';

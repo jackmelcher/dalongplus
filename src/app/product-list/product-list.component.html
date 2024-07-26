@@ -3,7 +3,7 @@
         @for (product of products; track product?.fields?.['acronym']) {
             <!-- <button (click)="selectProductLine(product?.fields?.['acronym'])">{{product?.fields?.['acronym']}}</button> -->
             <div class="textCenter">
-                <a [routerLink]="['reviews/'+product?.fields?.['acronym']]">
+                <a [routerLink]="['/reviews/'+product?.fields?.['acronym']]">
                     <img class="logo" [src]="product?.fields?.['logo']"/>
                     <div>{{product?.fields?.['scale'] + ' ' + product?.fields?.['name']}}</div>
                 </a>

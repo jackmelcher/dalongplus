@@ -1,62 +1,3 @@
-<!-- <h1>Info</h1>
-<p>{{ modelKit?.fields?.productLine?.fields?.acronym }}</p>
-<p>{{ modelKit?.fields?.productLine?.fields?.scale }}</p>
-<p>{{ modelKit?.fields?.productLine?.fields?.grade }}</p>
-<p>{{ modelKit?.fields?.mobileSuit?.fields?.model }}</p>
-<p>{{ modelKit?.fields?.mobileSuit?.fields?.name }}</p>
-<p>{{ modelKit?.fields?.['releaseDate'] }}</p>
-<p>{{ modelKit?.fields?.['msrp'] }}</p> -->
-
-<!-- <div *ngIf="boxImage && boxImage > 0" >
-    <h1>Box</h1>
-    <img [src]="getBoxImages()">
-</div> -->
-<!-- 
-<div *ngIf="runnersImage > 0" >
-    <h1>Runners</h1>
-    <ng-template ngFor let-number [ngForOf]="[].constructor(runnersImage)" let-i="index">
-            <img [src]="getRunnersImages(i)">
-    </ng-template>
-</div>
-
-<div *ngIf="manualImage > 0" >
-    <h1>Manual</h1>
-    <ng-template ngFor let-number [ngForOf]="[].constructor(manualImage)" let-i="index">
-        <img [src]="getManualImages(i)">
-    </ng-template>
-</div>
-
-<div *ngIf="runnerImage > 0" >
-    <h1>Runner</h1>
-    <ng-template ngFor let-number [ngForOf]="[].constructor(runnerImage)" let-i="index">
-        <img [src]="getRunnerImages(i)">
-    </ng-template>
-</div>
-
-<div *ngIf="partsImage.length > 0" >
-    <h1>Parts</h1>
-    <ng-template ngFor let-number [ngForOf]="[].constructor(partsImage)" let-i="index">
-        <img [src]="getPartsImages(i)">
-    </ng-template>
-</div>
-    
-<div *ngIf="reviewImage > 0" >
-    <h1>Review</h1>
-    <ng-template ngFor let-number [ngForOf]="[].constructor(reviewImage)" let-i="index">
-        <img [src]="getReviewImages(i)">
-    </ng-template>
-
-    <div *ngIf="extraImage > 0" >
-        <ng-template ngFor let-number [ngForOf]="[].constructor(extraImage)" let-i="index">
-            <img [src]="getExtraImages(i)">
-        </ng-template>
-    </div>
-
-    <div>
-        <a [href]="getDalongLink(modelKit?.fields?.productLine?.fields?.['dalonglink'], modelKit?.fields?.productLine?.fields?.['acronym'], this.modelKit?.fields?.dalongId)">Original Review</a>
-    </div>
-</div> -->
-
 <div class="content">
     <h1>{{getHeader()}}</h1>
     <h2>Info</h2>
@@ -65,12 +6,12 @@
     <p>Price: {{ getPrice() }} Yen</p>
     <h2>Manual & Runners</h2>
     @for (i of review.info; track $index) {
-        <img [src]="review.link.substring(0, review.link.lastIndexOf('/')) + '/' + i">
+        <img [src]="'//wsrv.nl/?url=' + review.link.substring(6, review.link.lastIndexOf('/')) + '/' + i">
     }
     <h2>Review</h2>
     @for (p of review.review; track $index) {
         @for (i of p['images']; track $index) {
-            <img [src]="review.link.substring(0, review.link.lastIndexOf('/')) + '/' + i">
+            <img [src]="'//wsrv.nl/?url=' + review.link.substring(6, review.link.lastIndexOf('/')) + '/' + i">
         }
         <p>{{p['text']}}</p>
     }

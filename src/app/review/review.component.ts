@@ -52,35 +52,7 @@ export class ReviewComponent {
     }
 
     this.review = this.modelKit?.fields?.['review'];
-    // How can i get this fetch to check for last image that exists?
-    // let x:boolean = true;
-    // let i = 12
-    //  this.checkLink(this.getReviewImages(i)).then(res =>{ x = res;console.log(x);console.log(i);});
-
-    // Notes: This method is toooooo slow. CHecking every link and getting a response is slow. 
-    // this.processTasks([].constructor(14)).then(i => {this.reviewImage = i;console.log(this.reviewImage);});
   }
-
-  // async processTasks(array:any): Promise<number> {
-  //   let x = 0;
-  //   for (let i = 0; i < array.length; i++) {
-  //     await this.checkLink(this.getReviewImages(i)).then(
-  //       res => {
-  //         if(!res){
-  //           console.log('break');
-  //           x = i-1;
-  //           i = array.length
-  //         }
-  //         else{console.log(i);}
-  //       });
-  //   }
-  //   console.log('Completed!!!');
-  //   return x;
-  // }
-
-  // async checkLink(url:string):Promise<boolean> {
-  //   return (await fetch(url,{mode: "no-cors"})).ok 
-  // }
 
   protected getBoxImages(): string {
     
@@ -118,17 +90,7 @@ export class ReviewComponent {
     return this.dalongUrl + this.dalongImageUrl + this.partsImage[index] + '.jpg';
   }
 
- 
-  
-  // protected getDalongLink (dalonglink: any, series: any, index: number): string {
-  //   if( dalonglink == null){
-  //     return "";
-  //   }
-  //   if(series == "HGUC" && index > 9){
-  //     dalonglink = dalonglink.replaceAll("0","");
-  //   }
-  //   return this.dalongUrl + dalonglink.replaceAll("$",index);
-  // }
+
   protected getDalongLink (): string {
     return this.review.link;
   }
