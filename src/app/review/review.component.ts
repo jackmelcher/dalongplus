@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ContentfulService } from '../contentful.service';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-review',
   standalone: true,
@@ -9,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './review.component.scss'
 })
 export class ReviewComponent {
-  @Input() id: string | null = '';
+  id: string | null = '';
   modelKit: any;
   protected boxImage:number = 0;
   protected runnersImage:number = 0;
@@ -22,10 +24,11 @@ export class ReviewComponent {
   protected partsImage:string[] = []
   private dalongUrl:string = 'http://dalong.net/reviews/';
 
-  constructor(private contentfulService: ContentfulService) { }
+  constructor(private contentfulService: ContentfulService, private route: ActivatedRoute) { }
   
   // fetch data on init
   ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
     this.contentfulService.getModelKits({'fields.id': this.id})
     .then(modelKits => {this.modelKit = modelKits[0]; this.initVariables()});
   }
